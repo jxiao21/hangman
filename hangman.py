@@ -22,16 +22,23 @@ def hangman():
         difficulty = input('Easy (E), Medium (M), or Hard (H): ')
 
     if (difficulty == 'E'):
-        lives = 12
+        from hangman_visual import easy_lives_visual
+        visual = easy_lives_visual
+        lives = 10
     elif (difficulty == 'M'):
+        from hangman_visual import medium_lives_visual
+        visual = medium_lives_visual
         lives = 9
     else:
+        from hangman_visual import hard_lives_visual_dict
+        visual = hard_lives_visual_dict
         lives = 6
 
     # get user input
     while len(word_letters) > 0 and lives > 0:
         # print used letters 
         print()
+        print(visual[lives])
         print(f'You have {lives} lives left.')
         print('You have used these letters: ', ' '.join(used_letters))
 
@@ -69,6 +76,7 @@ def hangman():
 
     print()
     if lives == 0:
+        print(visual[0])
         print('Sorry, you lost. The word was', word)
     else:
         print(f'You guessed the word {word}! Congratulations!')
